@@ -1,0 +1,6 @@
+[submodule "qtqrencode"]
+	path = qtqrencode
+	url = https://github.com/cybercatalyst/qtqrencode.git
+[submodule "qtsystemtrayiconmac"]
+	path = qtsystemtrayiconmac
+	url = https://github.com/cybercatalyst/qtsystemtrayiconmac.git

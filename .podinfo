@@ -1,0 +1,11 @@
+[qtqrencode]
+author=Neal Sebastian
+description=Generate QR Codes from QByteArray data.
+license=MIT
+website=
+
+[qtsystemtrayiconmac]
+author=Jacob Dawid
+description=System tray icon with MacOSX native features.
+license=AGPLv3
+website=
