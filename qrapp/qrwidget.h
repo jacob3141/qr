@@ -23,6 +23,7 @@ public slots:
     void generateQRCode(QString text);
     void trayIconActivated(QSystemTrayIcon::ActivationReason activationReason);
 
+    void applicationStateChanged(Qt::ApplicationState state);
 private:
     QLabel *_label;
     QLineEdit *_lineEdit;

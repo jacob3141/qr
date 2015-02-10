@@ -1,11 +1,13 @@
 #include "qrwidget.h"
 
 #include <QVBoxLayout>
+#include <QGuiApplication>
+#include <QClipboard>
 
 #include "qtqrencode.h"
 
 QRWidget::QRWidget(QWidget *parent)
-    : QWidget(parent, Qt::FramelessWindowHint) {
+    : QWidget(parent, Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint) {
 
     _systemTrayIcon.setIcon(QIcon(":/icons/qr.png"));
 #ifndef Q_OS_MAC
@@ -18,6 +20,8 @@ QRWidget::QRWidget(QWidget *parent)
     _lineEdit->setPlaceholderText("Enter data to be encoded here");
     vBoxLayout->addWidget(_label);
     vBoxLayout->addWidget(_lineEdit);
+    vBoxLayout->setSpacing(1);
+    vBoxLayout->setContentsMargins(1, 1, 1, 1);
     setLayout(vBoxLayout);
 
     setFixedSize(480, 512);
@@ -26,6 +30,10 @@ QRWidget::QRWidget(QWidget *parent)
 
     connect(&_systemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this,
             SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
+
+    connect(qGuiApp, SIGNAL(applicationStateChanged(Qt::ApplicationState)), this, SLOT(applicationStateChanged(Qt::ApplicationState)));
+
+    setFocusProxy(_lineEdit);
 }
 
 QRWidget::~QRWidget() {
@@ -48,6 +56,14 @@ void QRWidget::trayIconActivated(QSystemTrayIcon::ActivationReason activationRea
     } else {
         show();
         move(geometry.x() + geometry.width() / 2 - width() / 2, geometry.y());
-
+        raise();
+        _lineEdit->setText(qGuiApp->clipboard()->text());
     }
 }
+
+void QRWidget::applicationStateChanged(Qt::ApplicationState state) {
+    if(state == Qt::ApplicationInactive) {
+        hide();
+    }
+}
+
