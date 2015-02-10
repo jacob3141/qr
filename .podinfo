@@ -9,3 +9,9 @@ author=Jacob Dawid
 description=System tray icon with MacOSX native features.
 license=AGPLv3
 website=
+
+[qtwaitingspinner]
+author="Alexander Turkin, William Hallatt, Jacob Dawid"
+description=Floating waiting spinner widget.
+license=MIT
+website=

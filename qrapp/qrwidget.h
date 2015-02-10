@@ -4,12 +4,15 @@
 #include <QWidget>
 #include <QLabel>
 #include <QLineEdit>
+#include <QMenuBar>
 
 #ifdef Q_OS_MAC
 #include "systemtrayiconmac.h"
 #else
 #include <QSystemTrayIcon>
 #endif
+
+#include "waitingspinnerwidget.h"
 
 class QRWidget : public QWidget
 {
@@ -24,9 +27,15 @@ public slots:
     void trayIconActivated(QSystemTrayIcon::ActivationReason activationReason);
 
     void applicationStateChanged(Qt::ApplicationState state);
+
+    void save();
+    void quit();
 private:
     QLabel *_label;
     QLineEdit *_lineEdit;
+    QMenuBar *_menuBar;
+    WaitingSpinnerWidget *_waitingSpinnerWidget;
+
 #ifdef Q_OS_MAC
     SystemTrayIconMac _systemTrayIcon;
 #else

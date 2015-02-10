@@ -5,4 +5,5 @@
 
 include(qtqrencode/qtqrencode.pri)
 include(qtsystemtrayiconmac/qtsystemtrayiconmac.pri)
+include(qtwaitingspinner/qtwaitingspinner.pri)
 

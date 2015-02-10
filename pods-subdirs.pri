@@ -5,5 +5,6 @@
 
 SUBDIRS += \
 	qtqrencode \
-	qtsystemtrayiconmac 
+	qtsystemtrayiconmac \
+	qtwaitingspinner 
 

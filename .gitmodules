@@ -4,3 +4,6 @@
 [submodule "qtsystemtrayiconmac"]
 	path = qtsystemtrayiconmac
 	url = https://github.com/cybercatalyst/qtsystemtrayiconmac.git
+[submodule "qtwaitingspinner"]
+	path = qtwaitingspinner
+	url = https://github.com/cybercatalyst/qtwaitingspinner.git
