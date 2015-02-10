@@ -7,9 +7,10 @@
 QRWidget::QRWidget(QWidget *parent)
     : QWidget(parent, Qt::FramelessWindowHint) {
 
-    _systemTrayicon.setIcon(QIcon(":/icons/qr.png"));
-    _systemTrayicon.show();
-
+    _systemTrayIcon.setIcon(QIcon(":/icons/qr.png"));
+#ifndef Q_OS_MAC
+    _systemTrayIcon.show();
+#endif
     QVBoxLayout *vBoxLayout = new QVBoxLayout();
     _label = new QLabel(this);
     _label->setScaledContents(true);
@@ -23,7 +24,7 @@ QRWidget::QRWidget(QWidget *parent)
 
     connect(_lineEdit, SIGNAL(textChanged(QString)), this, SLOT(generateQRCode(QString)));
 
-    connect(&_systemTrayicon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this,
+    connect(&_systemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this,
             SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
 }
 
@@ -41,7 +42,7 @@ void QRWidget::generateQRCode(QString text) {
 }
 
 void QRWidget::trayIconActivated(QSystemTrayIcon::ActivationReason activationReason) {
-    QRect geometry = _systemTrayicon.geometry();
+    QRect geometry = _systemTrayIcon.geometry();
     if(isVisible()) {
         hide();
     } else {

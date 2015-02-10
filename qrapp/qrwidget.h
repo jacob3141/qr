@@ -5,7 +5,11 @@
 #include <QLabel>
 #include <QLineEdit>
 
+#ifdef Q_OS_MAC
+#include "systemtrayiconmac.h"
+#else
 #include <QSystemTrayIcon>
+#endif
 
 class QRWidget : public QWidget
 {
@@ -22,7 +26,12 @@ public slots:
 private:
     QLabel *_label;
     QLineEdit *_lineEdit;
+#ifdef Q_OS_MAC
+    SystemTrayIconMac _systemTrayIcon;
+#else
     QSystemTrayIcon _systemTrayicon;
+#endif
+
 };
 
 #endif // QRWIDGET_H
