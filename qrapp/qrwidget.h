@@ -30,7 +30,7 @@ private:
 #ifdef Q_OS_MAC
     SystemTrayIconMac _systemTrayIcon;
 #else
-    QSystemTrayIcon _systemTrayicon;
+    QSystemTrayIcon _systemTrayIcon;
 #endif
 
 };
